@@ -1,8 +1,9 @@
 import { Dialog } from "@kobalte/core/dialog";
 import { Command } from "cmdk-solid";
-import { createEffect, createSignal, For, JSX, Show, VoidProps } from "solid-js";
+import { createSignal, For, JSX, Show, VoidProps } from "solid-js";
 
-import { createKeyHold, createShortcut } from "@solid-primitives/keyboard";
+import { useHotkeys } from "bagon-hooks";
+
 import "./cmd-navbar.css";
 
 type CMDNavBarProps = {};
@@ -12,21 +13,24 @@ export function CMDNavBar(props: VoidProps<CMDNavBarProps>) {
   const [isOpen, setIsOpen] = createSignal(false);
   const [inputValue, setInputValue] = createSignal("");
 
-  const escapeDown = createKeyHold("Escape", { preventDefault: false });
+  useHotkeys([
+    // [
+    //   "escape",
+    //   () => {
+    //     setIsOpen(false);
 
-  createShortcut(
-    ["Meta", "K"],
-    () => {
-      setIsOpen(true);
-    },
-    { requireReset: false }
-  );
+    //     console.log("ESCAPE1");
+    //   },
+    // ],
+    [
+      "mod+k",
+      () => {
+        setIsOpen(true);
 
-  createEffect(() => {
-    if (escapeDown()) {
-      setIsOpen(false);
-    }
-  });
+        console.log("MOD + K");
+      },
+    ],
+  ]);
 
   const [pages, setPages] = createSignal<string[]>(["home"]);
   const activePage = () => pages()[pages().length - 1];
@@ -87,6 +91,11 @@ export function CMDNavBar(props: VoidProps<CMDNavBarProps>) {
                 placeholder="What do you need?"
                 onValueChange={(value) => {
                   setInputValue(value);
+                }}
+                onKeyDown={(event) => {
+                  if (event.metaKey && event.key === "k") {
+                    setIsOpen(setIsOpen(false));
+                  }
                 }}
               />
               <Command.List>
