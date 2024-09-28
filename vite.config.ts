@@ -1,6 +1,9 @@
 // Hono
 import devServer from "@hono/vite-dev-server";
 
+// Cloudflare Pages
+import { pages as cfPages } from "vike-cloudflare";
+
 // Vike
 import vikeSolid from "vike-solid/vite";
 import vike from "vike/plugin";
@@ -15,6 +18,7 @@ const root = resolve(__dirname, ".");
 
 export default defineConfig({
   plugins: [
+    cfPages(),
     devServer({
       entry: "server.ts",
 
