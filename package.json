@@ -37,7 +37,6 @@
     "bagon-hooks": "^0.0.0",
     "cmdk-solid": "^1.1.0",
     "hono": "^4.6.3",
-    "my-app": ".",
     "solid-js": "^1.9.1",
     "vike": "^0.4.197",
     "vite": "^5.4.8"
