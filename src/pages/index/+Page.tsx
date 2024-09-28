@@ -4,14 +4,9 @@ export default function Page() {
   return (
     <>
       <div>
-        <h1>My Vike + Solid app</h1>
-        This page is:
-        <ul>
-          <li>Rendered to HTML.</li>
-          <li>
-            Interactive. <Counter />
-          </li>
-        </ul>
+        <h1>Digikatt Studios</h1>
+        Chase and Catch Your Dreams! We're a small team of Filipino game devs that try to make
+        games.
       </div>
     </>
   );

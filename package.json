@@ -16,6 +16,7 @@
   "author": "",
   "devDependencies": {
     "@hono/vite-dev-server": "^0.16.0",
+    "@tailwindcss/typography": "^0.5.15",
     "@types/bun": "^1.1.10",
     "@typescript-eslint/eslint-plugin": "^8.7.0",
     "@typescript-eslint/parser": "^8.7.0",

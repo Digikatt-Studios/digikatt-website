@@ -3,5 +3,4 @@ export enum PageRoutes {
   About = "/about",
   Contact = "/contact",
   PrivacyPolicy = "/privacy-policy",
-  TermsOfService = "/terms-of-service",
 }
