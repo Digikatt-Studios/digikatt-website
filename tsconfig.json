@@ -17,6 +17,7 @@
       "@/*": ["./src/*"]
     },
     "types": [
+      "vite-plugin-solid-svg/types-component-solid",
       "@types/bun", // Remove when Node
       "vite/client",
       "vike-solid/client"

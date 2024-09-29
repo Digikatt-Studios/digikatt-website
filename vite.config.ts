@@ -16,6 +16,9 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const root = resolve(__dirname, ".");
 
+// Icons
+import solidSvg from "vite-plugin-solid-svg";
+
 export default defineConfig({
   plugins: [
     cfPages(),
@@ -38,6 +41,7 @@ export default defineConfig({
       prerender: true,
     }),
     vikeSolid(),
+    solidSvg(),
   ],
   resolve: {
     alias: {

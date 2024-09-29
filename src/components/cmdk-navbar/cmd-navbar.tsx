@@ -4,9 +4,12 @@ import { createSignal, For, JSX, Show, VoidProps } from "solid-js";
 
 import { useHotkeys } from "bagon-hooks";
 
+import { IconMenu } from "@/assets";
 import "./cmd-navbar.css";
 
-type CMDNavBarProps = {};
+type CMDNavBarProps = {
+  triggerClass?: string;
+};
 
 export function CMDNavBar(props: VoidProps<CMDNavBarProps>) {
   let ref: HTMLDivElement;
@@ -14,14 +17,6 @@ export function CMDNavBar(props: VoidProps<CMDNavBarProps>) {
   const [inputValue, setInputValue] = createSignal("");
 
   useHotkeys([
-    // [
-    //   "escape",
-    //   () => {
-    //     setIsOpen(false);
-
-    //     console.log("ESCAPE1");
-    //   },
-    // ],
     [
       "mod+k",
       () => {
@@ -59,7 +54,9 @@ export function CMDNavBar(props: VoidProps<CMDNavBarProps>) {
 
   return (
     <Dialog open={isOpen()} onOpenChange={setIsOpen}>
-      <Dialog.Trigger class="rounded-md border border-orange-200 p-2">Cmd + K</Dialog.Trigger>
+      <Dialog.Trigger class={`rounded-md border border-orange-200 p-2 ${props.triggerClass}`}>
+        <IconMenu />
+      </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay class="fixed inset-0 z-50 bg-black/50" />
 

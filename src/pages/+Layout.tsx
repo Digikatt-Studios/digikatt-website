@@ -9,14 +9,17 @@ export default function RootLayout(props: FlowProps) {
 
   return (
     <div class="flex min-h-screen flex-col">
-      <nav class="flex justify-center gap-x-10 p-4 text-orange-500">
+      <nav class="flex justify-end gap-x-10 p-4 text-orange-500">
+        <div class="hidden gap-x-10 md:flex">
+          <NavLink href={PageRoutes.Home}>Home</NavLink>
+          <NavLink href={PageRoutes.About}>About</NavLink>
+          <NavLink href={PageRoutes.Blog}>Blog</NavLink>
+          <NavLink href={PageRoutes.Contact}>Contact</NavLink>
+          <NavLink href={PageRoutes.ConceptArts}>Concept Arts</NavLink>
+          <NavLink href={PageRoutes.Games}>Games</NavLink>
+        </div>
+
         <CMDNavBar />
-        <NavLink href={PageRoutes.Home}>Home</NavLink>
-        <NavLink href={PageRoutes.About}>About</NavLink>
-        <NavLink href={PageRoutes.Blog}>Blog</NavLink>
-        <NavLink href={PageRoutes.Contact}>Contact</NavLink>
-        <NavLink href={PageRoutes.ConceptArts}>Concept Arts</NavLink>
-        <NavLink href={PageRoutes.Games}>Games</NavLink>
       </nav>
 
       <main class="flex-1">{props.children}</main>
