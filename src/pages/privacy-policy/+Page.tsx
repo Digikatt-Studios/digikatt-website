@@ -1,6 +1,8 @@
 export default function PrivacyPolicyPage() {
   return (
-    <div class="prose">
+    <div class="prose mx-auto w-full max-w-7xl px-6 pb-20 text-neutral-700">
+      <div class="h-10" />
+
       <h1>Privacy Policy</h1>
 
       <p>
@@ -87,8 +89,13 @@ export default function PrivacyPolicyPage() {
 
       <ul>
         <li>
-          If you have any questions about this Privacy Policy, please contact us at [email
-          protected]  
+          If you have any questions about this Privacy Policy, please contact us at{" "}
+          <a
+            class="cursor-pointer text-orange-500 underline"
+            href="mailto:digikattstudios@gmail.com"
+          >
+            digikattstudios@gmail.com
+          </a>
         </li>
       </ul>
     </div>

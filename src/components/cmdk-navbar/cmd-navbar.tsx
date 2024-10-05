@@ -4,6 +4,8 @@ import { createSignal, For, JSX, Match, Show, Switch, VoidProps } from "solid-js
 
 import { useHotkeys, useOs } from "bagon-hooks";
 
+import { PageRoutes } from "@/constants/page-routes";
+import { navigate } from "vike/client/router";
 import "./cmd-navbar.css";
 
 type CMDNavBarProps = {
@@ -56,7 +58,7 @@ export function CMDNavBar(props: VoidProps<CMDNavBarProps>) {
   return (
     <Dialog open={isOpen()} onOpenChange={setIsOpen}>
       <Dialog.Trigger
-        class={`border-input hover:bg-accent hover:text-accent-foreground text-muted-foreground relative flex h-8 w-48 items-center justify-between rounded-[0.5rem] border border-orange-500 bg-orange-200/30 px-4 py-2 text-sm font-normal shadow-none transition-colors focus:ring-0 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 md:w-40 lg:w-64 ${props.triggerClass}`}
+        class={`border-input hover:bg-accent hover:text-accent-foreground text-muted-foreground relative flex h-8 w-48 items-center justify-between rounded-[0.5rem] border border-orange-500 bg-orange-200/30 px-4 py-2 text-sm font-normal shadow-none transition-colors focus:ring-0 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 lg:w-64 ${props.triggerClass}`}
       >
         <span class="flex-shrink-0 truncate">Quick Search...</span>
         <Switch>
@@ -75,7 +77,7 @@ export function CMDNavBar(props: VoidProps<CMDNavBarProps>) {
       <Dialog.Portal>
         <Dialog.Overlay class="fixed inset-0 z-50 bg-black/50" />
 
-        <Dialog.Content class="fixed left-1/2 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2">
+        <Dialog.Content class="fixed left-1/2 top-32 z-50 -translate-x-1/2">
           <div class="cmd-navbar w-full md:w-[500px]">
             <Command
               ref={(el) => (ref = el)}
@@ -100,7 +102,7 @@ export function CMDNavBar(props: VoidProps<CMDNavBarProps>) {
               </div>
               <Command.Input
                 autofocus
-                placeholder="What do you need?"
+                placeholder="Search for something..."
                 onValueChange={(value) => {
                   setInputValue(value);
                 }}
@@ -110,13 +112,14 @@ export function CMDNavBar(props: VoidProps<CMDNavBarProps>) {
                   }
                 }}
               />
-              <Command.List>
+              {/* <Command.List>
                 <Command.Empty>No results found.</Command.Empty>
                 {activePage() === "home" && (
                   <Home searchProjects={() => setPages([...pages(), "projects"])} />
                 )}
                 {activePage() === "projects" && <Projects />}
-              </Command.List>
+              </Command.List> */}
+              <NavLinks closeMenu={() => setIsOpen(setIsOpen(false))} />
             </Command>
           </div>
         </Dialog.Content>
@@ -125,6 +128,46 @@ export function CMDNavBar(props: VoidProps<CMDNavBarProps>) {
   );
 }
 
+type NavLinksProps = {
+  closeMenu: () => void;
+};
+function NavLinks(props: NavLinksProps) {
+  function _navigate(route: string) {
+    navigate(route);
+    props.closeMenu();
+  }
+
+  return (
+    <>
+      <Command.Group heading="Pages">
+        <Item onSelect={() => _navigate(PageRoutes.Home)}>
+          <ProjectsIcon />
+          Home
+        </Item>
+        <Item onSelect={() => _navigate(PageRoutes.About)}>
+          <ProjectsIcon />
+          About
+        </Item>
+        <Item onSelect={() => _navigate(PageRoutes.Games)}>
+          <ProjectsIcon />
+          Games
+        </Item>
+        <Item onSelect={() => _navigate(PageRoutes.ConceptArts)}>
+          <ProjectsIcon />
+          Concept Arts
+        </Item>
+        <Item onSelect={() => _navigate(PageRoutes.Contact)}>
+          <ProjectsIcon />
+          Contact
+        </Item>
+        <Item onSelect={() => _navigate(PageRoutes.PrivacyPolicy)}>
+          <ProjectsIcon />
+          Privacy Policy
+        </Item>
+      </Command.Group>
+    </>
+  );
+}
 function Home(props: { searchProjects: Function }) {
   return (
     <>
