@@ -1,6 +1,8 @@
 // Hono
+import devServer from "@hono/vite-dev-server";
 
 // Cloudflare Pages
+import { pages as cfPages } from "vike-cloudflare";
 
 // Vike
 import vikeSolid from "vike-solid/vite";
@@ -19,22 +21,22 @@ import solidSvg from "vite-plugin-solid-svg";
 
 export default defineConfig({
   plugins: [
-    // cfPages(),
-    // devServer({
-    //   entry: "server.ts",
+    cfPages(),
+    devServer({
+      entry: "server.ts",
 
-    //   exclude: [
-    //     /^\/@.+$/,
-    //     /.*\.(ts|tsx|vue)($|\?)/,
-    //     /.*\.(s?css|less)($|\?)/,
-    //     /^\/favicon\.ico$/,
-    //     /.*\.(svg|png)($|\?)/,
-    //     /^\/(public|assets|static)\/.+/,
-    //     /^\/node_modules\/.*/,
-    //   ],
+      exclude: [
+        /^\/@.+$/,
+        /.*\.(ts|tsx|vue)($|\?)/,
+        /.*\.(s?css|less)($|\?)/,
+        /^\/favicon\.ico$/,
+        /.*\.(svg|png)($|\?)/,
+        /^\/(public|assets|static)\/.+/,
+        /^\/node_modules\/.*/,
+      ],
 
-    //   injectClientScript: false,
-    // }),
+      injectClientScript: false,
+    }),
     vike({
       prerender: true,
     }),
