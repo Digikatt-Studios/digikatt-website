@@ -1,9 +1,17 @@
 import { ImgHeroBg } from "@/assets/images";
+import getTitle from "@/utils/get-title";
 import { JSX } from "solid-js";
 
+import { Head } from "vike-solid/Head";
 export default function Page() {
   return (
     <>
+      <Head>
+        <title>{getTitle("Home")}</title>
+        <meta name="description" content="Digikatt Studios" />
+        <meta name="keywords" content="mobile,games,digikatt studios,digikatt,chromeleon" />
+      </Head>
+
       <section class="relative">
         <div
           class="absolute inset-0 opacity-20 blur-sm"

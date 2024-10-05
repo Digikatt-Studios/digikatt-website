@@ -1,7 +1,9 @@
 import { CMDNavBar } from "@/components/cmdk-navbar/cmd-navbar";
 import { PageRoutes } from "@/constants/page-routes";
 import "@/styles/app.css";
+import getTitle from "@/utils/get-title";
 import { createMemo, createSignal, type FlowProps } from "solid-js";
+import { Head } from "vike-solid/Head";
 import { usePageContext } from "vike-solid/usePageContext";
 
 export default function RootLayout(props: FlowProps) {
@@ -9,6 +11,15 @@ export default function RootLayout(props: FlowProps) {
 
   return (
     <div class="flex min-h-screen flex-col">
+      <Head>
+        <title>{getTitle("Home")}</title>
+        <meta
+          name="description"
+          content="Digikatt Studios is a rag-tag team of Filipino game devs."
+        />
+        <meta name="keywords" content="mobile,games,digikatt studios,digikatt,chromeleon" />
+      </Head>
+
       <nav class="mx-auto flex w-full max-w-7xl items-center justify-between gap-x-10 p-4 px-6 text-orange-500">
         <div class="flex gap-x-10">
           <a href={PageRoutes.Home} class="flex-shrink-0 text-lg font-medium md:text-2xl">
