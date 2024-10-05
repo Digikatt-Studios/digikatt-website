@@ -1,3 +1,5 @@
+@import url("/fonts/Geist.css");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,6 +10,7 @@
   }
 
   body {
+    font-family: "Geist";
     @apply bg-gray-100;
   }
 }

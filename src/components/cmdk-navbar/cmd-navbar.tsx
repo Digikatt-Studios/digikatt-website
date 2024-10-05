@@ -1,10 +1,9 @@
 import { Dialog } from "@kobalte/core/dialog";
 import { Command } from "cmdk-solid";
-import { createSignal, For, JSX, Show, VoidProps } from "solid-js";
+import { createSignal, For, JSX, Match, Show, Switch, VoidProps } from "solid-js";
 
-import { useHotkeys } from "bagon-hooks";
+import { useHotkeys, useOs } from "bagon-hooks";
 
-import { IconMenu } from "@/assets";
 import "./cmd-navbar.css";
 
 type CMDNavBarProps = {
@@ -15,6 +14,8 @@ export function CMDNavBar(props: VoidProps<CMDNavBarProps>) {
   let ref: HTMLDivElement;
   const [isOpen, setIsOpen] = createSignal(false);
   const [inputValue, setInputValue] = createSignal("");
+
+  const currentOS = useOs();
 
   useHotkeys([
     [
@@ -54,8 +55,22 @@ export function CMDNavBar(props: VoidProps<CMDNavBarProps>) {
 
   return (
     <Dialog open={isOpen()} onOpenChange={setIsOpen}>
-      <Dialog.Trigger class={`rounded-md border border-orange-200 p-2 ${props.triggerClass}`}>
-        <IconMenu />
+      <Dialog.Trigger
+        class={`border-input hover:bg-accent hover:text-accent-foreground text-muted-foreground relative flex h-8 w-48 items-center justify-between rounded-[0.5rem] border border-orange-500 bg-orange-200/30 px-4 py-2 text-sm font-normal shadow-none transition-colors focus:ring-0 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 md:w-40 lg:w-64 ${props.triggerClass}`}
+      >
+        <span class="flex-shrink-0 truncate">Quick Search...</span>
+        <Switch>
+          <Match when={currentOS() === "macos"}>
+            <kbd class="pointer-events-none h-5 select-none items-center gap-1 truncate rounded border border-orange-500 bg-orange-300/50 px-1.5 font-mono text-[10px] font-medium text-orange-500 opacity-100 sm:flex">
+              ⌘ K
+            </kbd>
+          </Match>
+          <Match when={["windows", "linux"].includes(currentOS())}>
+            <kbd class="pointer-events-none h-5 select-none items-center gap-1 truncate rounded border border-orange-500 bg-orange-300/50 px-1.5 font-mono text-[10px] font-medium text-orange-500 opacity-100 sm:flex">
+              Ctrl K
+            </kbd>
+          </Match>
+        </Switch>
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay class="fixed inset-0 z-50 bg-black/50" />

@@ -9,14 +9,17 @@ export default function RootLayout(props: FlowProps) {
 
   return (
     <div class="flex min-h-screen flex-col">
-      <nav class="flex justify-end gap-x-10 p-4 text-orange-500">
-        <div class="hidden gap-x-10 md:flex">
-          <NavLink href={PageRoutes.Home}>Home</NavLink>
-          <NavLink href={PageRoutes.About}>About</NavLink>
+      <nav class="mx-auto flex w-full max-w-7xl items-center justify-between gap-x-10 p-4 px-6 text-orange-500">
+        <div class="flex gap-x-10">
+          <a href={PageRoutes.Home} class="flex-shrink-0 text-lg font-medium md:text-2xl">
+            DIGIKATT STUDIOS
+          </a>
+
+          {/* <NavLink href={PageRoutes.About}>About</NavLink>
           <NavLink href={PageRoutes.Blog}>Blog</NavLink>
           <NavLink href={PageRoutes.Contact}>Contact</NavLink>
           <NavLink href={PageRoutes.ConceptArts}>Concept Arts</NavLink>
-          <NavLink href={PageRoutes.Games}>Games</NavLink>
+          <NavLink href={PageRoutes.Games}>Games</NavLink> */}
         </div>
 
         <CMDNavBar />
@@ -72,7 +75,6 @@ function NavLink(props: { href: string; children: string }) {
       classList={{
         "text-orange-500": true,
         "font-bold": isActive(),
-        "border-b": isActive(),
       }}
     >
       {props.children}
