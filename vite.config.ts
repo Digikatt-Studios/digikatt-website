@@ -22,21 +22,21 @@ import solidSvg from "vite-plugin-solid-svg";
 export default defineConfig({
   plugins: [
     cfPages(),
-    devServer({
-      entry: "server.ts",
+    // devServer({
+    //   entry: "server.ts",
 
-      exclude: [
-        /^\/@.+$/,
-        /.*\.(ts|tsx|vue)($|\?)/,
-        /.*\.(s?css|less)($|\?)/,
-        /^\/favicon\.ico$/,
-        /.*\.(svg|png)($|\?)/,
-        /^\/(public|assets|static)\/.+/,
-        /^\/node_modules\/.*/,
-      ],
+    //   exclude: [
+    //     /^\/@.+$/,
+    //     /.*\.(ts|tsx|vue)($|\?)/,
+    //     /.*\.(s?css|less)($|\?)/,
+    //     /^\/favicon\.ico$/,
+    //     /.*\.(svg|png)($|\?)/,
+    //     /^\/(public|assets|static)\/.+/,
+    //     /^\/node_modules\/.*/,
+    //   ],
 
-      injectClientScript: false,
-    }),
+    //   injectClientScript: false,
+    // }),
     vike({
       prerender: true,
     }),

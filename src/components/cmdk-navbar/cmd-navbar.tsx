@@ -56,7 +56,7 @@ export function CMDNavBar(props: VoidProps<CMDNavBarProps>) {
   }
 
   return (
-    <Dialog open={isOpen()} onOpenChange={setIsOpen}>
+    <Dialog open={true} onOpenChange={setIsOpen}>
       <Dialog.Trigger
         class={`border-input hover:bg-accent hover:text-accent-foreground text-muted-foreground relative flex h-8 w-48 items-center justify-between rounded-[0.5rem] border border-orange-500 bg-orange-200/30 px-4 py-2 text-sm font-normal shadow-none transition-colors focus:ring-0 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 lg:w-64 ${props.triggerClass}`}
       >
@@ -78,7 +78,7 @@ export function CMDNavBar(props: VoidProps<CMDNavBarProps>) {
         <Dialog.Overlay class="fixed inset-0 z-50 bg-black/50" />
 
         <Dialog.Content class="fixed left-1/2 top-32 z-50 -translate-x-1/2">
-          <div class="cmd-navbar w-full md:w-[500px]">
+          <div class="cmd-navbar w-[calc(100vw-2rem)] transition-[width] duration-200 lg:w-[500px]">
             <Command
               ref={(el) => (ref = el)}
               onKeyDown={(e: KeyboardEvent) => {
